@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Antora Documentation and Static Sites | Docwright</title>
+<meta name="description" content="Antora consulting: multi-repo, multi-version documentation sites, playbooks, theming and CI publishing, by technical writer Huw Coverdale Jones.">
+<link rel="stylesheet" href="_ds/nocturne-7a072a3f-fc5b-48ce-9b7f-5562d12c82be/styles.css">
+<script src="_ds/nocturne-7a072a3f-fc5b-48ce-9b7f-5562d12c82be/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); text-wrap: pretty; }
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--color-accent-300); }
+</style>
+</helmet>
+<div style="background: radial-gradient(1200px 720px at 82% -160px, color-mix(in srgb, var(--color-accent-900) 75%, transparent), transparent 60%), var(--color-bg); min-height: 100vh; font-family: var(--font-body); color: var(--color-text);">
+  <nav class="nav" style="padding-inline: clamp(20px, 5vw, 72px);">
+    <a class="nav-brand" href="./home.dc.html" style="color: inherit;">Docwright</a>
+    <a href="./services.dc.html">Services</a>
+    <a href="./about.dc.html">About</a>
+    <a class="btn btn-primary" href="mailto:huwcoverdalejones@gmail.com">Get in touch</a>
+  </nav>
+  <div style="max-width: 900px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 72px);">
+    <section style="padding: 80px 0 40px;">
+      <p style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent); margin: 0 0 20px;"><a href="./services.dc.html" style="color: inherit;">Services</a> / Antora</p>
+      <h1 style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 24px; margin-left: -0.06em;">Antora, Docusaurus, and Static Websites</h1>
+      <p style="font-size: 17px; line-height: 28px; max-width: 58ch; margin: 0;">I build, migrate and maintain documentation sites using static site generators, and can analyse which is the best fit for your documentation needs.</p>
+      <p style="font-size: 17px; line-height: 28px; max-width: 58ch; margin: 0;">Simplify your documentation site: websites built from static files, generated from Asccidoc or Markdown. Creates a fast loading static site with no need to upgrade or patch the build process.</p>
+      <p style="font-size: 17px; line-height: 28px; max-width: 58ch; margin: 0;">Can create more dynamic features for your sites, such as including Lunr search engines in your Antora built site.</p>
+    </section>
+    <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+      <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">The Process</h2>
+      <ul style="margin: 0; padding-left: 18px; font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+        <li>Establish structure of documentation required. Choose tool based on information here.</li>
+        <li>Build initial structure system based on thids decision. For example, writing your Antora playbook for build, or coding your Docusaurus config.</li>
+        <li>Develop a UI bundle themed to your product, giving it your unique spin.</li>
+        <li>Implement the correct search and navigation tools.</li>
+        <li>Write the CI/CD publishing pipeline, to create the self generating site.</li>
+        <li>Write AsciiDoc conventions and templates for engineers and maintainers after the project is finished.</li>
+        <li>This process creates an accessible and responsive site. No bells or whistles needed.</li>
+        <li>Fit the pipeline into your existing web hosting system. This process is also automated in the CI/CD pipeline.</li>
+        <li>After I'm done, you will have a build system which any dev or engineer can run themselves.</li>
+      </ul>
+    </section>
+    <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+      <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;"> A Cohesive Docs-as-Code Site</h2>
+        <p style="font-size: 15.5px; line-height: 28px; margin: 0; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+         No matter the tool, the result is a clear, navigable website. The Landing Page and Content will be wrapped in a UI that fits your brand design.</p>
+      </section>
+    <section style="padding: 48px 0 88px; border-top: 1px solid var(--color-divider);">
+      <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 16px;">Discuss an Antora project</h2>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+        <a class="btn btn-primary" href="mailto:huwcoverdalejones@gmail.com">Email</a>
+        <a class="btn btn-ghost" href="./services.dc.html">All services</a>
+      </div>
+    </section>
+    <footer style="padding: 28px 0 56px; font-size: 13px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 55%, transparent); border-top: 1px solid var(--color-divider);">Docwright — Huw Coverdale Jones</footer>
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>
