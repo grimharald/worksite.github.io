@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Migration from Existing Sources | DocOps Architecture</title>
+<meta name="description" content="Migrating documentation from Confluence to AsciiDoc or Markdown in Git: inventory, conversion, redirects and a working build, without losing history.">
+<link rel="canonical" href="https://grimharald.github.io/worksite.github.io/asciidoc-migration-from-confluence.dc.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DocOps Architecture">
+<meta property="og:title" content="Migration from Existing Sources | DocOps Architecture">
+<meta property="og:description" content="Migrating documentation from Confluence to AsciiDoc or Markdown in Git: inventory, conversion, redirects and a working build, without losing history.">
+<meta property="og:url" content="https://grimharald.github.io/worksite.github.io/asciidoc-migration-from-confluence.dc.html">
+<meta property="og:image" content="https://grimharald.github.io/worksite.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="DocOps Architecture: technical writing and docs-as-code">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  text-wrap: pretty;
+  }
+  a {
+  color: var(--color-accent);
+  text-decoration: none;
+  }
+  a:hover {
+  color: var(--color-accent-300);
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Documentation migration to AsciiDoc and Markdown",
+      "description": "Migrating documentation from Confluence to AsciiDoc or Markdown in Git: inventory, conversion, redirects and a working build, without losing history.",
+      "url": "https://grimharald.github.io/worksite.github.io/asciidoc-migration-from-confluence.dc.html",
+      "provider": {
+        "@type": "ProfessionalService",
+        "@id": "https://grimharald.github.io/worksite.github.io/#business",
+        "name": "DocOps Architecture"
+      },
+      "areaServed": "Worldwide"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+    <div
+      style="background: radial-gradient(1200px 720px at 82% -160px, color-mix(in srgb, var(--color-accent-900) 75%, transparent), transparent 60%), var(--color-bg); min-height: 100vh; font-family: var(--font-body); color: var(--color-text);">
+      <nav class="nav" style="padding-inline: clamp(20px, 5vw, 72px);">
+        <a class="nav-brand" href="./" style="color: inherit;"><span class="nav-brand">DocOps Architecture</span></a>
+        <a href="./services.dc.html">Services</a>
+        <a href="./about.dc.html">About</a>
+        <a class="btn btn-primary" href="mailto:huwcoverdalejones@gmail.com">Get in touch</a>
+      </nav>
+      <div style="max-width: 900px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 72px);">
+        <section style="padding: 80px 0 40px;">
+          <p
+            style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent); margin: 0 0 20px;">
+            <a href="./services.dc.html" style="color: inherit;">Services</a> / Migration
+          </p>
+          <h1
+            style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 24px; margin-left: -0.06em;">
+            Migration of Existing Materials</h1>
+          <p style="font-size: 17px; line-height: 28px; max-width: 58ch; margin: 0;">The advantage of Docs-As-Code, as
+            opposed to existing wiki software (Confluence, Notion, etc.) is the ability to migrate and adapt it easily.
+            Additionally, wikis can become stuffed with out-of-date documentation, all in a limited format. I offer both
+            the mass conversion and the critical editing and auditing involved. I will help guide the decision-making
+            process, and enable you to clean up docs in real time.</p>
+        </section>
+        <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+          <h2
+            style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">
+            How a migration runs</h2>
+          <ul
+            style="margin: 0; padding-left: 18px; font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+            <li>Inventory and audit of existing documentation.</li>
+            <li>Agree on what can be kept, merged, and archived.</li>
+            <li>Mass-convert the agreed pages to the target format (AsciiDoc, Markdown, etc.). Manually review after the
+              process.</li>
+            <li>Clean up the infrastructure, ensuring the websites and links all still match.</li>
+            <li>Implement CI/CD pipeline for future updates and additions.</li>
+          </ul>
+        </section>
+        <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+          <h2
+            style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">
+            Why Migrate?</h2>
+          <p
+            style="font-size: 15.5px; line-height: 28px; margin: 0; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+            Using CI/CD docs-as-code documentation makes it easy to version to specific releases. It enables product and
+            documentation to update together. The documentation system can also fit effortlessly into existing
+            engineering and update processes.</p>
+        </section>
+        <section style="padding: 48px 0 88px; border-top: 1px solid var(--color-divider);">
+          <h2
+            style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 16px;">
+            Need a migration? Contact me</h2>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+            <a class="btn btn-primary" href="mailto:huwcoverdalejones@gmail.com">Email</a>
+            <a class="btn btn-ghost" href="./services.dc.html">All services</a>
+          </div>
+        </section>
+        <footer
+          style="padding: 28px 0 56px; font-size: 13px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 55%, transparent); border-top: 1px solid var(--color-divider); display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: space-between;">
+          <span>DocOps Architecture — Huw Coverdale Jones</span>
+          <span><a href="./privacy.html"> Privacy Policy </a></span>
+          <span>DocOps, Technical Writing, and Docs-As-Code</span>
+        </footer>
+      </div>
+    </div>
+</body>
+
+</html>
