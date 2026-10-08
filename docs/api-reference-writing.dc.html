@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>API Reference Documentation from OpenAPI | DocOps Architecture</title>
   <meta name="description"
-    content="API reference documentation written from OpenAPI specs and source, with worked examples, error tables and reference material that stays in sync with the code.">
+    content="API reference sites built from your OpenAPI (Swagger) spec with Redocly, and published automatically through CI/CD so the reference stays in sync with the code.">
   <link rel="canonical" href="https://www.docops-architecture.com/api-reference-writing.dc.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="DocOps Architecture">
   <meta property="og:title" content="API Reference Documentation from OpenAPI | DocOps Architecture">
   <meta property="og:description"
-    content="API reference documentation written from OpenAPI specs and source, with worked examples, error tables and reference material that stays in sync with the code.">
+    content="API reference sites built from your OpenAPI (Swagger) spec with Redocly, and published automatically through CI/CD so the reference stays in sync with the code.">
   <meta property="og:url" content="https://www.docops-architecture.com/api-reference-writing.dc.html">
   <meta property="og:image" content="https://www.docops-architecture.com/assets/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -49,7 +49,7 @@
     {
       "@type": "Service",
       "name": "API reference documentation",
-      "description": "API reference documentation written from OpenAPI specs and source, with worked examples, error tables and reference material that stays in sync with the code.",
+      "description": "API reference sites built from your OpenAPI (Swagger) spec with Redocly, and published automatically through CI/CD so the reference stays in sync with the code.",
       "url": "https://www.docops-architecture.com/api-reference-writing.dc.html",
       "provider": {
         "@type": "ProfessionalService",
@@ -81,19 +81,62 @@
           style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 24px; margin-left: -0.06em;">
           API Reference Documentation from OpenAPI
         </h1>
-        <p style="font-size: 17px; line-height: 28px; max-width: 58ch; margin: 0;">Generated reference output is a
-          starting point, not documentation. Descriptions, worked examples and honest error tables are what turn a
-          schema dump into something a developer can integrate against.</p>
+        <p style="font-size: 17px; line-height: 28px; max-width: 58ch; margin: 0;">API reference is often crucial, but can only be used when the content is
+          current, frequently published, and easy to find. Using OpenAPI (Swagger) and Redocly, I can set up an
+          automatically rebuilding API reference site. After this, engineers can easily maintain the new site,
+          ensuring that any published reference always matches the API they ship.</p>
       </section>
       <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
         <h2
           style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">
-          What the work covers</h2>
+          Common API reference docs issues</h2>
+        <p style="font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch; margin: 0 0 16px;">A lot of API teams will already have an OpenAPI Specification. But the following often take place after it is written:</p>
         <ul
           style="margin: 0; padding-left: 18px; font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
-          <li>Write up endpoint and reference websites with your team</li>
-          <li>Using Swagger and OpenAPI to create a self-updating API site. </li>
-          <li>Integrate it into CI/CD process to auto-update and publish</li>
+          <li>A broken reference site build, causing publishing to fall behind updates.</li>
+          <li>A broken build makes the reference publishing a manual process, meaning someone must remember to update it.</li>
+          <li>Swagger UI defaults to a page style that is hard to navigate and doesn't look like the rest of your product or documentation.</li>
+          <li>All engineers are unfamiliar with the build, meaning they are unwilling to attempt a fix.</li>
+        </ul>
+      </section>
+      <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+        <h2
+          style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">
+          The Process</h2>
+        <ul
+          style="margin: 0; padding-left: 18px; font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+          <li>I audit your current spec, identify any issues, and decide on a plan of action.</li>
+          <li>I take your OpenAPI spec and create an automated build process with Redocly. If you already use Swagger UI, you choose whether to migrate to Redocly or fix the existing build.</li>
+          <li>I update the theme to make the reference match your product, so it slots into your documentation site easily. This way, developers can move between guides and reference smoothly.</li>
+          <li>I automate the build through your CI/CD pipeline on GitHub, GitLab or Bitbucket, so every push to the main branch rebuilds and publishes the reference site. We can also set up a preview step or branch at this point, so future changes can be reviewed before they go live.</li>
+          <li>If necessary, I add supporting documents to help developers get started with your API.</li>
+          <li>Finally, I hand over the build along with supporting docs, so any developer on your team can maintain it.</li>
+        </ul>
+      </section>
+      <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+        <h2
+          style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">
+          Example: rebuilding a broken API reference at GraphAware</h2>
+        <p style="font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch; margin: 0 0 16px;">At GraphAware, we needed to get the API reference for our Neo4j-based graph platform publishing again, and bring it up to date.</p>
+        <p style="font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch; margin: 0 0 16px;">Engineering had maintained a mostly accurate OpenAPI spec, so I had the content I needed. Using Redocly, I updated the site, generating it from the spec, and then made sure it could update through Git, like the Antora documentation. I sent a summary of the build steps to the CTO, who was able to slot this process into the company's existing CI/CD pipeline.</p>
+        <p style="font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch; margin: 0 0 16px;">In the end, we had a working reference site that updated from an existing Git repository, which engineering could rely on to update with Git pushes. Since then, I have developed CI/CD publishing pipelines from scratch, so I can now handle the whole process, creating a published site from an OpenAPI spec.</p>
+      </section>
+      <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+        <h2
+          style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">
+          Who owns the spec?</h2>
+        <p style="font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch; margin: 0 0 16px;">You and your engineers do. I'll keep the OpenAPI spec in your codebase, and won't change how it is written or maintained. My work is just the process: taking the spec and creating a usable site, which publishes automatically, and making sure that process is reliable.</p>
+      </section>
+      <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+        <h2
+          style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">
+          Tools</h2>
+        <ul
+          style="margin: 0; padding-left: 18px; font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+          <li>OpenAPI (Swagger) specifications</li>
+          <li>Redocly and Swagger UI</li>
+          <li>Git, with CI/CD on GitHub, GitLab or Bitbucket</li>
+          <li>Antora or Docusaurus, for the guides around your reference</li>
         </ul>
       </section>
       <section style="padding: 48px 0 88px; border-top: 1px solid var(--color-divider);">
