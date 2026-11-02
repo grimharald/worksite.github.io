@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Migrate from Confluence or Wikis to AsciiDoc &amp; Markdown | DocOps Architecture</title>
-<meta name="description" content="Migrating documentation from Confluence to AsciiDoc or Markdown in Git: inventory, conversion, redirects and a working build, without losing history.">
+<meta name="description" content="Migrate documentation from Confluence, Notion, Quip or a CMS to AsciiDoc or Markdown in Git: content audit, Pandoc conversion, link clean-up, and archiving what you no longer need.">
 <link rel="canonical" href="https://www.docops-architecture.com/asciidoc-migration-from-confluence.dc.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DocOps Architecture">
 <meta property="og:title" content="Migrate from Confluence or Wikis to AsciiDoc &amp; Markdown | DocOps Architecture">
-<meta property="og:description" content="Migrating documentation from Confluence to AsciiDoc or Markdown in Git: inventory, conversion, redirects and a working build, without losing history.">
+<meta property="og:description" content="Migrate documentation from Confluence, Notion, Quip or a CMS to AsciiDoc or Markdown in Git: content audit, Pandoc conversion, link clean-up, and archiving what you no longer need.">
 <meta property="og:url" content="https://www.docops-architecture.com/asciidoc-migration-from-confluence.dc.html">
 <meta property="og:image" content="https://www.docops-architecture.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -44,7 +44,7 @@
     {
       "@type": "Service",
       "name": "Documentation migration to AsciiDoc and Markdown",
-      "description": "Migrating documentation from Confluence to AsciiDoc or Markdown in Git: inventory, conversion, redirects and a working build, without losing history.",
+      "description": "Migrate documentation from Confluence, Notion, Quip or a CMS to AsciiDoc or Markdown in Git: content audit, Pandoc conversion, link clean-up, and archiving what you no longer need.",
       "url": "https://www.docops-architecture.com/asciidoc-migration-from-confluence.dc.html",
       "provider": {
         "@type": "ProfessionalService",
@@ -76,11 +76,19 @@
             style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 24px; margin-left: -0.06em;">
             Migrate from Confluence or Wikis to AsciiDoc and Markdown
           </h1>
-          <p style="font-size: 17px; line-height: 28px; max-width: 58ch; margin: 0;">The advantage of docs-as-code, as
-            opposed to existing wiki software (Confluence, Notion, etc.), is the ability to migrate and adapt it easily.
-            Additionally, wikis can become stuffed with out-of-date documentation, all in a limited format. I offer both
-            the mass conversion and the critical editing and auditing involved. I will help guide the decision-making
-            process, and enable you to clean up docs in real time.</p>
+          <p style="font-size: 17px; line-height: 28px; max-width: 58ch; margin: 0;">I move documentation out of wikis and CMS-style tools such as Confluence, Notion and Quip, and into AsciiDoc or Markdown in Git. I handle both the mass conversion and the critical editing and auditing that go with it, so you end up with a smaller, current set of docs rather than the same old problems in a new format.</p>
+        </section>
+        <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+          <h2
+            style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">
+            Common wiki and CMS documentation issues</h2>
+          <ul
+            style="margin: 0; padding-left: 18px; font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+            <li>Years of out-of-date articles make it hard for readers to find or trust what is current.</li>
+            <li>You keep paying to store content that nobody reads.</li>
+            <li>The content is locked into one tool's format, which makes it hard to reuse or move.</li>
+            <li>Docs sit apart from the code, so they aren't updated or reviewed along with the product.</li>
+          </ul>
         </section>
         <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
           <h2
@@ -88,23 +96,53 @@
             How a migration runs</h2>
           <ul
             style="margin: 0; padding-left: 18px; font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
-            <li>Inventory and audit of existing documentation.</li>
-            <li>Agree on what can be kept, merged, and archived.</li>
-            <li>Mass-convert the agreed pages to the target format (AsciiDoc, Markdown, etc.). Manually review after the
-              process.</li>
-            <li>Clean up the infrastructure, ensuring the websites and links all still match.</li>
-            <li>Implement CI/CD pipeline for future updates and additions.</li>
+            <li>I inventory and audit your existing documentation.</li>
+            <li>We agree what to keep, merge and archive.</li>
+            <li>I mass-convert the content to the target format with Pandoc, then manually review the pages that will be published.</li>
+            <li>I update links as I go, so the new site works for your customers from day one.</li>
+            <li>If public URLs are changing, I work with you on redirects and on letting your customers know.</li>
+            <li>I archive older content outside your live docs, so it is kept without cluttering the site.</li>
+            <li>I set up a CI/CD pipeline for future updates and additions.</li>
           </ul>
         </section>
         <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
           <h2
             style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">
-            Why Migrate?</h2>
+            Not everything needs the same treatment</h2>
           <p
-            style="font-size: 15.5px; line-height: 28px; margin: 0; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
-            Using CI/CD docs-as-code documentation makes it easy to version to specific releases. It enables product and
-            documentation to update together. The documentation system can also fit effortlessly into existing
-            engineering and update processes.</p>
+            style="font-size: 15.5px; line-height: 28px; margin: 0 0 16px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+            A migration doesn't mean every page gets the same care. Older articles that nobody reads may only need bulk conversion and archiving, which is fast and cheap. Customer-facing pages, such as release notes, need careful conversion and checking, because people rely on them being accurate. Sorting content this way during the audit is what keeps a large migration manageable, and puts the effort where it matters.</p>
+        </section>
+        <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+          <h2
+            style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">
+            Example: auditing and migrating docs at Kaptio</h2>
+          <p
+            style="font-size: 15.5px; line-height: 28px; margin: 0 0 16px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+            At Kaptio, an audit found a daunting collection of out-of-date articles, previously stored in a paid CMS. Using Pandoc to convert a huge number of these articles in bulk, I moved them to our Notion archives, saving us the CMS bill. This process also impressed upon my colleagues the benefits of docs-as-code, as well as showing the advantages of mass conversion and this form of archiving.</p>
+          <p
+            style="font-size: 15.5px; line-height: 28px; margin: 0 0 16px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+            The release notes were where I really shined. I set about my own self-driven project with the aim of building a new public-facing site. This site would naturally require an Antora build achieved through a <a href="./docs-as-code-ci-cd.dc.html">docs-as-code CI/CD pipeline</a>. I converted the release notes to AsciiDoc with Pandoc and updated the links as I went, so the new site was current and usable for customers.</p>
+        </section>
+        <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+          <h2
+            style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">
+            Why migrate?</h2>
+          <p
+            style="font-size: 15.5px; line-height: 28px; margin: 0 0 16px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+            With docs-as-code, documentation can be versioned to specific releases, so your product and documentation update together. The documentation system also fits into your existing engineering and update processes.</p>
+        </section>
+        <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+          <h2
+            style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">
+            Systems and tools</h2>
+          <ul
+            style="margin: 0; padding-left: 18px; font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+            <li><strong>Migrating from:</strong> Confluence, Notion, Quip and other CMS-style systems</li>
+            <li><strong>Migrating to:</strong> AsciiDoc or Markdown, stored in Git</li>
+            <li><strong>Conversion:</strong> Pandoc, plus manual review</li>
+            <li><strong>Publishing:</strong> Antora or Docusaurus</li>
+          </ul>
         </section>
         <section style="padding: 48px 0 88px; border-top: 1px solid var(--color-divider);">
           <p style="font-size: 15.5px; line-height: 28px; margin: 0 0 32px;">Related: <a
