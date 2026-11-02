@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Docs-as-Code CI/CD Publishing Pipelines | DocOps Architecture</title>
-<meta name="description" content="CI/CD pipelines for documentation: builds on every pull request, link and style checks, preview deployments and versioned publishing on release.">
+<meta name="description" content="Docs-as-code CI/CD pipelines on GitLab, GitHub and Bitbucket: documentation that rebuilds on every merge, with a preview branch for review and a static site that stays current.">
 <link rel="canonical" href="https://www.docops-architecture.com/docs-as-code-ci-cd.dc.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DocOps Architecture">
 <meta property="og:title" content="Docs-as-Code CI/CD Publishing Pipelines | DocOps Architecture">
-<meta property="og:description" content="CI/CD pipelines for documentation: builds on every pull request, link and style checks, preview deployments and versioned publishing on release.">
+<meta property="og:description" content="Docs-as-code CI/CD pipelines on GitLab, GitHub and Bitbucket: documentation that rebuilds on every merge, with a preview branch for review and a static site that stays current.">
 <meta property="og:url" content="https://www.docops-architecture.com/docs-as-code-ci-cd.dc.html">
 <meta property="og:image" content="https://www.docops-architecture.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -33,7 +33,7 @@
     {
       "@type": "Service",
       "name": "Docs-as-code CI/CD pipelines",
-      "description": "CI/CD pipelines for documentation: builds on every pull request, link and style checks, preview deployments and versioned publishing on release.",
+      "description": "Docs-as-code CI/CD pipelines on GitLab, GitHub and Bitbucket: documentation that rebuilds on every merge, with a preview branch for review and a static site that stays current.",
       "url": "https://www.docops-architecture.com/docs-as-code-ci-cd.dc.html",
       "provider": {
         "@type": "ProfessionalService",
@@ -60,20 +60,51 @@
       <h1 style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 24px; margin-left: -0.06em;">
         Docs-as-Code CI/CD Publishing Pipelines
       </h1>
-      <p style="font-size: 17px; line-height: 28px; max-width: 58ch; margin: 0;">Docs-as-Code enables a self-publishing documentation pipeline. Documentation stays updated this way, all through code merges and Git pushes.</p>
+      <p style="font-size: 17px; line-height: 28px; max-width: 58ch; margin: 0;">With docs-as-code, your documentation lives in Git alongside your product, and a CI/CD pipeline builds it automatically. Writers and engineers update docs through the same merges and pull requests they already use, and the published site stays current without anyone having to remember to rebuild it.</p>
+    </section>
+    <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+      <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">Common documentation publishing issues</h2>
+      <ul style="margin: 0; padding-left: 18px; font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+        <li>Publishing depends on one person running a build by hand, so docs fall behind each release.</li>
+        <li>Docs live in a separate CMS or wiki from the code, so engineers don't update them when features change.</li>
+        <li>There is no review step, so mistakes go straight to customers.</li>
+        <li>Docs for older releases are overwritten, and customers on those versions lose their documentation.</li>
+      </ul>
+    </section>
+    <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+      <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">The Process</h2>
+      <ul style="margin: 0; padding-left: 18px; font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
+        <li>I audit your current documentation setup: where the source lives, how it is built, where it is published, and who updates it.</li>
+        <li>I choose the right site generator for your needs, usually Antora or Docusaurus, and set up the build in your repository.</li>
+        <li>I write the pipeline on your existing Git platform, so the site rebuilds automatically when changes are merged.</li>
+        <li>I set up a preview branch, so changes are built and reviewed on a preview site before they are merged to the main branch and go live.</li>
+        <li>Where you need it, I set up versioned documentation, so each release keeps its own docs. I did this with Antora at GraphAware.</li>
+        <li>I connect the build to your hosting. For static hosting I can write the deployment step myself, or I can hand over a finished build for your web team to deploy.</li>
+        <li>I hand over the pipeline with documentation on how it works, so your team can maintain it after I leave.</li>
+      </ul>
     </section>
     <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
       <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">The Advantages</h2>
       <ul style="margin: 0; padding-left: 18px; font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">
-        <li>Merge or pull requests will update documentation automatically.</li>
-        <li>Staging and review processes are built into the process, and a preview site can be included in the pipeline.</li>
-        <li>Site is easily personalised to the client, through stylesheets and UI updates.</li>
-        <li>Different CI/CD pipelines can update different release versions and patches.</li>
+        <li>Merge or pull requests update the documentation automatically.</li>
+        <li>Staging and review are built into the process, with a preview site in the pipeline.</li>
+        <li>The site is easily personalised through stylesheets and UI updates.</li>
+        <li>Different pipelines can build different release versions and patches.</li>
       </ul>
     </section>
     <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+      <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">Example: moving Kaptio from a CMS to an Antora pipeline</h2>
+      <p style="font-size: 15.5px; line-height: 28px; margin: 0 0 16px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">At Kaptio, the documentation was managed in a basic CMS and had fallen out of date. I moved it to docs-as-code with Antora and built the CI pipeline that generates the site.</p>
+      <p style="font-size: 15.5px; line-height: 28px; margin: 0 0 16px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">The pipeline built the docs on every merge to a preview branch, so changes could be reviewed on a preview site, and then again on merge to the master branch for the live site. I first set this up in Bitbucket Pipelines, and when the company moved to GitLab, I rebuilt the same process in GitLab CI/CD. The company's web developer handled the final deployment step to their website.</p>
+      <p style="font-size: 15.5px; line-height: 28px; margin: 0 0 16px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">The result was a fast, easily navigated static documentation site, updated through the same Git workflow the engineers already used, with no manual publishing step.</p>
+    </section>
+    <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
+      <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">PDF output: Tern Systems</h2>
+      <p style="font-size: 15.5px; line-height: 28px; margin: 0 0 16px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">Not every team needs a website. At Tern Systems, I set up an AsciiDoc-to-PDF build process using Asciidoctor PDF for air traffic control software documentation, and handed it to the DevOps team to run. Docs-as-code can produce print-ready manuals as well as websites.</p>
+    </section>
+    <section style="padding: 40px 0; border-top: 1px solid var(--color-divider);">
       <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: 26px; line-height: 34px; letter-spacing: -0.012em; margin: 0 0 20px;">Platforms</h2>
-      <p style="font-size: 15.5px; line-height: 28px; margin: 0 0 20px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">I am experienced and confident with the inbuilt CI/CD tools of all the major repositories. This means I can fit my process into your system whether you use GitHub, GitLab, or Bitbucket.</p>
+      <p style="font-size: 15.5px; line-height: 28px; margin: 0 0 16px; color: color-mix(in srgb, var(--color-text) 82%, transparent); max-width: 58ch;">I have built documentation pipelines in Bitbucket Pipelines and GitLab CI/CD, and have used GitHub Actions on my own projects. Whichever Git platform you use, the pipeline fits into your existing system rather than replacing it.</p>
     </section>
     <section style="padding: 48px 0 88px; border-top: 1px solid var(--color-divider);">
       <p style="font-size: 15.5px; line-height: 28px; margin: 0 0 32px;">Related: <a
