@@ -1,0 +1,221 @@
+= Case Study: Migrating Documentation at TravelCo to Docs-as-Code
+
+== Summary
+
+====
+**Role:** Technical writer, TravelCo, around two years
+
+**Tools:** Antora, AsciiDoc, Pandoc, Lunr, Bitbucket Pipelines, GitLab CI/CD
+    
+**Outcome:** A self-updating docs site, which automatically rebuilds with every Git push, eliminating the need for an expensive CMS.
+====
+
+TravelCo is a pseudonym for a travel software company.
+
+== The Problem 
+
+TravelCo was a mature company at the time I joined, and had a mass of existing documentation. The issue was that the documentation was stored in several sources of truth, and much of it had not been updated for some time.
+
+== The Audit
+
+The audit confirmed what I suspected; many of our sources had not been read for some time. I found that the only consistently updated documentation was release notes and bespoke handover documentation for high-profile clients. Additionally, we were using a CMS to publish this material to our own website. The CMS had a limited number of licences, which bottlenecked updating documents quickly. The website also ran slowly.
+
+I began drawing up plans for a faster and more responsive website, built through a much less limited system. My preference was to begin building an Antora pipeline within our existing system. This system would then not be limited by slow performance or licensing, saving the company significant time and money. 
+
+== Setting Up Antora
+
+As release notes were the most frequently updated documentation, I set my sights on using them as the first step. I would assemble the Antora pipeline around them, then add from there.
+
+[NOTE]
+====
+Configuration in this case study is simplified, with names changed.
+====
+
+I began by creating two repositories, `landing-page` and `release-notes`, in our existing `Documentation` project in Bitbucket, then assembled a playbook in a third repository, `antora-build`, including Lunr for search:
+
+[source,yaml]
+----
+site:
+  title: Documentation
+  url: https://docs.example.com
+  start_page: landing-page::landing-page.adoc
+
+content:
+  sources:
+    - url: ./landing-page
+    - url: ./release-notes
+
+antora:
+  extensions:
+    - '@antora/lunr-extension'
+
+ui:
+  bundle:
+    url: ./antora-ui/build/ui-bundle.zip
+----
+
+Running `antora antora-playbook.yml` gave me a working local site, so I knew the build worked.
+
+== Automating the Antora Build
+
+Next, I researched how to make the site build itself in Bitbucket Pipelines, and found a pre-existing Antora image I could use. After some trial and error, I had a pipeline that first built the UI, from a repository called `antora-ui`, and then built the site as an artifact:
+
+[source,yaml]
+----
+pipelines:
+  branches:
+    product:
+      - step:
+          name: ui-build-artifact
+          image: atlassian/default-image:3
+          script:
+            - git clone -b product https://$BB_USER:$BB_APP_PASSWORD@bitbucket.org/your-workspace/antora-ui.git
+            - cd antora-ui
+            - nvm install --lts
+            - npm i
+            - npx gulp bundle
+          artifacts:
+            - antora-ui/build/ui-bundle.zip
+      - step:
+          name: fetch_playbook
+          image: antora/antora:latest
+          script:
+            - npm i @antora/lunr-extension
+            - git clone -b product https://$BB_USER:$BB_APP_PASSWORD@bitbucket.org/your-workspace/landing-page.git
+            - git clone -b product https://$BB_USER:$BB_APP_PASSWORD@bitbucket.org/your-workspace/release-notes.git
+            - antora --fetch antora-playbook.yml
+          artifacts:
+            - build/site/**
+----
+
+I repeated this for the `develop` branch, which gave us an internal preview site.
+
+Finally, each content repository needed to trigger that build when it changed. This was the same small `bitbucket-pipelines.yml` in `antora-ui`, `landing-page` and `release-notes`:
+
+[source,yaml]
+----
+pipelines:
+  branches:
+    product:
+      - step:
+          name: trigger-antora-build
+          script:
+            - pipe: atlassian/trigger-pipeline:5.8.0
+              variables:
+                BITBUCKET_USERNAME: $BITBUCKET_USERNAME
+                BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+                REPOSITORY: 'antora-build'
+                ACCOUNT: 'your-workspace'
+                REF_TYPE: 'branch'
+                REF_NAME: 'product'
+----
+
+Now, merging to any of the three repositories rebuilt the site.
+
+With that sorted, we could move on to content. 
+
+== Mass Conversion and Archiving
+
+For the release notes, existing documents were stored in Markdown format due to being stored on Notion. 
+Markdown is very compatible with AsciiDoc, and AsciiDoc can actually build from Markdown syntax.
+This meant that we could simply download them, convert to `.adoc` format with Pandoc, and add them to the release notes repository under `pages`. With a little attention to the images and links, I then added them to the `nav.adoc`, which ended up looking like this:
+
+[source, adoc]
+----
+
+* xref:version.adoc[]
+** xref:version-21-38.adoc[]
+** xref:version-21-37.adoc[]
+** xref:version-21-36.adoc[]
+----
+
+Then I could make a landing page for specifically the Release Notes, called `release-notes.adoc`:
+
+[source]
+----
+== Releases
+
+  include::../nav.adoc[lines=2..-1]
+----
+
+This way, adding a new page to the nav will update the landing page, so we are always up to date on releases.
+
+I also downloaded copies of the non-release content for storage on Notion. We had them as `.docx` and did a mass conversion with Pandoc:
+
+----
+for f in *.docx; do pandoc "$f" -o "${f%.docx}.md" --extract-media=images; done
+----
+
+This was a mostly smooth process, but I had to be sure that the images survived the conversion when uploading them for archiving on Notion. After this, I'd input all the content needed for my proof-of-concept and needed to bring in my colleagues. 
+
+== Building a New UI
+
+At this point, we had to fit the new self-updating site to TravelCo's brand guidelines. The colouring and style guide were already available, so we just had to adapt to fit that. 
+
+I was aware of my limitations with CSS, so I consulted with two colleagues. One of these was my immediate manager, and another member of the team with hands-on HTML and CSS experience. Through consulting with marketing and the coding efforts of my manager, we were able to update the page beyond the Antora standard, and make a more interactive site. 
+
+Our efforts included:
+
+* Updating the standard font to the company's brand font.
+* Giving the landing page "cards" in HTML that popped up as you highlighted different sections of the site.
+* Ensuring all colours were from the official marketing standard.
+* Making sure the site had functional links to the TravelCo homepage, as well as other sections of the site. 
+
+With this, we were ready to show it off.
+
+== Publishing the Website
+
+After consulting with the System Architect, we secured a domain for the site. He then added our publishing pipeline to the publishing chain, including adding some Terraform steps to `bitbucket-pipelines.yml`.
+
+Voila! We had two sites, one public and one preview, that updated as part of an automated documentation build chain. We presented it to the other teams, and could begin to move forward. We invited feedback, and began to add further sections to the site. 
+
+== Metadata
+
+With the site published and reviewed by our peers, I extended its scope. I added an `antora-metadata` repository, mass downloaded and converted the existing metadata using the same techniques, added it to the playbook and pipeline, and gave it the same trigger. After updating `nav.adoc` and the landing page for this section, we had another self-updating part of the site.
+
+== Moving to GitLab
+
+Shortly after this, TravelCo moved to GitLab, so I rewrote every pipeline as a `.gitlab-ci.yml`. The build jobs carried over with few changes. The main difference was that each job now used a rule to choose its branch:
+
+[source,yaml]
+----
+rules:
+  - if: '$CI_COMMIT_BRANCH == "develop"'
+----
+
+The triggers also became simpler, as GitLab supports them directly:
+
+[source,yaml]
+----
+trigger-product-build:
+  stage: trigger-product
+  trigger:
+    project: documentation/antora-build
+    branch: product
+    strategy: depend
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "product"'
+----
+
+Our System Architect added the Terraform steps again, and the site kept running with little interruption.
+
+
+== In Conclusion
+
+After around 2 years of hard work, at the end of this project I had achieved a lot, both on my own and with the help of my colleagues.
+
+When I left the company I had:
+
+* Removed the need to pay for CMS licences for content. 
+* Archived and converted important material.
+* Assembled a single source of truth for all the sections of the documentation.
+* Created a static, responsive and user-friendly website, which the company continued to use after I left.
+* Created a self-updating pipeline, so the site was up to date with every push.
+
+My proof of concept had evolved into the source of truth for TravelCo's documentation, free of licensing and confusion.
+
+== For You
+
+Do you have a backlog that needs mass conversion? Are you interested in a Git-based self-updating system for your company? I can fit this methodology to your company's site, and leave you with a lightweight Antora site. I can additionally make different site versions for different software versions, which wasn't required at TravelCo.
+
+If this sounds like a useful use case for your existing materials, please mailto:contact@docops-architecture.com[get in touch].
